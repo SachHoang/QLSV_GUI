@@ -25,7 +25,7 @@ namespace QLSV_BLL
         {
             QLSV_Model context = new QLSV_Model();
             context.SinhVien1.AddOrUpdate(s);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
         public void Save(SinhVien1 s1)
         {

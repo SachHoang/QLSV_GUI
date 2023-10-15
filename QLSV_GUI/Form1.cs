@@ -71,7 +71,7 @@ namespace QLSV_GUI
             s.TenSV = txtHoTen.Text;
             s.MaLop = cboLop.SelectedValue.ToString();
             s.NgaySinh = DateTime.Parse(dtNgaySinh.Text);           
-            sinhVien1.Add(s);
+            sinhVien1.Add(s);          
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -134,6 +134,33 @@ namespace QLSV_GUI
 
         private void btnTim_Click(object sender, EventArgs e)
         {
+
+            string maSo = txtTim.Text;
+
+            SinhVien1 sv = sinhVien1.FindByID(maSo);
+
+            int index = -1;
+
+            for (int i = 0; i < dgvSV.Rows.Count; i++)
+            {
+                if (dgvSV.Rows[i].Cells[0].Value.ToString() == sv.MaSV)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index != -1)
+            {
+                dgvSV.CurrentCell = dgvSV.Rows[index].Cells[0];
+
+                // Lấy dữ liệu từ dòng hiện tại và gán lên các TextBox
+                txtMSSV.Text = dgvSV.Rows[index].Cells[0].Value.ToString();
+                txtHoTen.Text = dgvSV.Rows[index].Cells[1].Value.ToString();
+                dtNgaySinh.Text = dgvSV.Rows[index].Cells[2].Value.ToString();
+                cboLop.Text = dgvSV.Rows[index].Cells[3].Value.ToString();
+
+            }
 
         }
     }
